@@ -1,0 +1,35 @@
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  text-align: center;
+  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+}
+
+h1 {
+  color: white;
+}
+
+.game-container {
+  width: 600px;
+  height: 200px;
+
+  margin: auto;
+  margin-top: 150px;
+}
+
+.game-container2 {
+  display: grid;
+  grid-template-columns: repeat(4, 150px);
+  grid-template-rows: repeat(3, 150px);
+
+  grid-gap: 15px;
+}
+
+.imgs {
+  width: 150px;
+  height: 150px;
+}
