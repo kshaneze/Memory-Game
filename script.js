@@ -1,7 +1,5 @@
 'use strict';
 document.addEventListener('DOMContentLoaded', () => {
-  const container = document.querySelector('.game-container2');
-  let clickCount = 0;
   const cardsList = [
     {
       name: 'apple',
@@ -53,20 +51,71 @@ document.addEventListener('DOMContentLoaded', () => {
     },
   ];
 
-  cardsList.forEach(function (card) {
-    const images = document.createElement('img');
-    images.classList = 'imgs';
-    images.src = 'img/front.jpg';
-    container.appendChild(images);
+  const container = document.querySelector('.game-container2');
+  const attemptsHolder = document.querySelector('.attemptsHolder');
+  const foundHolder = document.querySelector('.foundHolder');
+  const cardsInGame = 12;
 
-    images.addEventListener('click', function (e) {
-      e.preventDefault();
-      let clicked = e.target;
-      const attemptsHolder = document.querySelector('.attemptsHolder');
-      const foundHolder = document.querySelector('.foundHolder');
-      images.src = card.image;
+  cardsList.sort(() => 0.5 - Math.random());
 
-      let clickedCardName = card.name;
-    });
-  });
+  let attempts = 0;
+  let foundCards = 0;
+
+  attemptsHolder.textContent = attempts;
+  foundHolder.textContent = foundCards;
+
+  let chosenCards = [];
+  let chosenCardsIds = [];
+
+  const initiateBoard = function () {
+    for (let i = 0; i < cardsList.length; i++) {
+      const card = document.createElement('img');
+      card.classList = 'imgs';
+      card.setAttribute('src', 'img/placeholder.jpg');
+      card.setAttribute('data-id', i);
+      card.addEventListener('click', flipCard);
+      container.appendChild(card);
+    }
+  };
+
+  const flipCard = function () {
+    if (chosenCards.length != 2) {
+      let cardId = this.getAttribute('data-id');
+      if (this.getAttribute('src') != 'img/front.jpg') {
+        chosenCards.push(cardsList[cardId].name);
+        chosenCardsIds.push(cardId);
+        this.setAttribute('src', cardsList[cardId].image);
+        if (chosenCards.length == 2) {
+          setTimeout(checkForMatch, 400);
+        }
+      }
+    }
+  };
+
+  const checkForMatch = function () {
+    attempts++;
+    let cards = document.querySelectorAll('img');
+    let firstCard = chosenCardsIds[0];
+    let secondCard = chosenCardsIds[1];
+
+    if (chosenCards[0] == chosenCards[1]) {
+      foundCards++;
+      cards[firstCard].setAttribute('src', 'img/front.jpg');
+      cards[secondCard].setAttribute('src', 'img/front.jpg');
+    } else {
+      cards[firstCard].setAttribute('src', 'img/placeholder.jpg');
+      cards[firstCard].setAttribute('src', 'img/placeholder.jpg');
+    }
+
+    chosenCards = [];
+    chosenCardsIds = [];
+
+    attemptsHolder.textContent = attempts;
+    foundHolder.textContent = foundCards;
+    if (foundCards == cardsInGame) {
+      alert('Well Done');
+    }
+  };
+
+  initiateBoard();
 });
