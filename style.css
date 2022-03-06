@@ -6,11 +6,10 @@ html {
 
 body {
   text-align: center;
-  background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
 }
 
 h1 {
-  color: white;
+  color: rgb(113, 113, 170);
 }
 
 .game-container {
@@ -18,7 +17,7 @@ h1 {
   height: 200px;
 
   margin: auto;
-  margin-top: 150px;
+  margin-top: 100px;
 }
 
 .game-container2 {
@@ -36,4 +35,20 @@ h1 {
 
 .hidden {
   opacity: 0;
+}
+
+.button {
+  padding: 5px;
+  margin-top: 20px;
+}
+
+p {
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+.attemptsHolder {
+  margin-right: 450px;
+}
+
+.foundHolder {
 }

@@ -54,7 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const container = document.querySelector('.game-container2');
   const attemptsHolder = document.querySelector('.attemptsHolder');
   const foundHolder = document.querySelector('.foundHolder');
-  const cardsInGame = 12;
+  const button = document.querySelector('.button');
+  const cardsInGame = 6;
 
   cardsList.sort(() => 0.5 - Math.random());
 
@@ -70,9 +71,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const initiateBoard = function () {
     for (let i = 0; i < cardsList.length; i++) {
       const card = document.createElement('img');
-      card.classList = 'imgs';
       card.setAttribute('src', 'img/placeholder.jpg');
       card.setAttribute('data-id', i);
+      card.classList = 'imgs';
       card.addEventListener('click', flipCard);
       container.appendChild(card);
     }
@@ -99,12 +100,12 @@ document.addEventListener('DOMContentLoaded', () => {
     let secondCard = chosenCardsIds[1];
 
     if (chosenCards[0] == chosenCards[1]) {
-      foundCards++;
       cards[firstCard].setAttribute('src', 'img/front.jpg');
       cards[secondCard].setAttribute('src', 'img/front.jpg');
+      foundCards++;
     } else {
       cards[firstCard].setAttribute('src', 'img/placeholder.jpg');
-      cards[firstCard].setAttribute('src', 'img/placeholder.jpg');
+      cards[secondCard].setAttribute('src', 'img/placeholder.jpg');
     }
 
     chosenCards = [];
@@ -112,10 +113,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
     attemptsHolder.textContent = attempts;
     foundHolder.textContent = foundCards;
+
     if (foundCards == cardsInGame) {
-      alert('Well Done');
+      alert('Well Done Budalo');
     }
   };
+
+  const restartGame = function () {
+    cardsList.sort(() => 0.5 - Math.random());
+
+    let cardss = document.querySelectorAll('img');
+    cardss.forEach(card => {
+      card.setAttribute('src', 'img/placeholder.jpg');
+    });
+
+    attempts = 0;
+    foundCards = 0;
+
+    attemptsHolder.textContent = attempts;
+    foundHolder.textContent = foundCards;
+
+    chosenCards = [];
+    chosenCardsIds = [];
+  };
+
+  button.addEventListener('click', restartGame);
 
   initiateBoard();
 });
