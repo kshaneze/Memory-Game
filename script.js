@@ -57,8 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const button = document.querySelector('.button');
   const cardsInGame = 6;
 
-  cardsList.sort(() => 0.5 - Math.random());
-
   let attempts = 0;
   let foundCards = 0;
 
@@ -66,7 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
   foundHolder.textContent = foundCards;
 
   let chosenCards = [];
-  let chosenCardsIds = [];
+  let chosenCardIds = [];
+
+  cardsList.sort(() => 0.5 - Math.random());
 
   const initiateBoard = function () {
     for (let i = 0; i < cardsList.length; i++) {
@@ -78,13 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
       container.appendChild(card);
     }
   };
-
   const flipCard = function () {
     if (chosenCards.length != 2) {
       let cardId = this.getAttribute('data-id');
       if (this.getAttribute('src') != 'img/front.jpg') {
         chosenCards.push(cardsList[cardId].name);
-        chosenCardsIds.push(cardId);
+        chosenCardIds.push(cardId);
         this.setAttribute('src', cardsList[cardId].image);
         if (chosenCards.length == 2) {
           setTimeout(checkForMatch, 400);
@@ -96,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const checkForMatch = function () {
     attempts++;
     let cards = document.querySelectorAll('img');
-    let firstCard = chosenCardsIds[0];
-    let secondCard = chosenCardsIds[1];
+    let firstCard = chosenCardIds[0];
+    let secondCard = chosenCardIds[1];
 
     if (chosenCards[0] == chosenCards[1]) {
       cards[firstCard].setAttribute('src', 'img/front.jpg');
@@ -109,21 +108,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     chosenCards = [];
-    chosenCardsIds = [];
+    chosenCardIds = [];
 
     attemptsHolder.textContent = attempts;
     foundHolder.textContent = foundCards;
 
     if (foundCards == cardsInGame) {
-      alert('Well Done Budalo');
+      alert('Well Done Brahh!!');
     }
   };
 
   const restartGame = function () {
     cardsList.sort(() => 0.5 - Math.random());
 
-    let cardss = document.querySelectorAll('img');
-    cardss.forEach(card => {
+    const allCards = document.querySelectorAll('img');
+    allCards.forEach(card => {
       card.setAttribute('src', 'img/placeholder.jpg');
     });
 
@@ -134,7 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     foundHolder.textContent = foundCards;
 
     chosenCards = [];
-    chosenCardsIds = [];
+    chosenCardIds = [];
   };
 
   button.addEventListener('click', restartGame);
