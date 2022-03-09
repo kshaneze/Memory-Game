@@ -2,35 +2,40 @@ html {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 body {
   text-align: center;
+  background-color: #80ced6;
 }
 
 h1 {
-  color: rgb(113, 113, 170);
+  color: white;
+  font-size: 50px;
 }
 
 .game-container {
-  width: 600px;
-  height: 200px;
-
+  width: 900px;
+  height: 740px;
+  background-color: #d5f4e6;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 70px;
+  border-radius: 20px;
 }
 
 .game-container2 {
   display: grid;
   grid-template-columns: repeat(4, 150px);
   grid-template-rows: repeat(3, 150px);
-
+  justify-content: center;
   grid-gap: 15px;
 }
 
 .imgs {
   width: 150px;
   height: 150px;
+  border-radius: 20px;
 }
 
 .hidden {
@@ -39,16 +44,33 @@ h1 {
 
 .button {
   padding: 5px;
-  margin-top: 20px;
+  margin-top: 35px;
+  border-radius: 15px;
+  font-size: 25px;
+  padding: 15px 40px 15px 40px;
+  background-color: #618685;
+  color: rgb(245, 238, 244);
+  border: none;
+  outline: none;
+  font-family: inherit;
+}
+.button:active {
+  transform: translateY(4px);
 }
 
 p {
-  font-size: 18px;
+  font-size: 28px;
   margin-bottom: 40px;
+  color: rgb(28, 71, 78);
+  padding: 15px;
 }
 .attemptsHolder {
-  margin-right: 450px;
+  display: inline-flex;
+  padding-right: 450px;
+  margin-top: 15px;
 }
 
 .foundHolder {
+  margin-top: 20px;
+  display: inline-flex;
 }

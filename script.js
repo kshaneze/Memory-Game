@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const flipCard = function () {
     if (chosenCards.length != 2) {
       let cardId = this.getAttribute('data-id');
-      if (this.getAttribute('src') != 'img/front.jpg') {
+      if (this.getAttribute('src') != 'img/blank.png') {
         chosenCards.push(cardsList[cardId].name);
         chosenCardIds.push(cardId);
         this.setAttribute('src', cardsList[cardId].image);
@@ -99,8 +99,8 @@ document.addEventListener('DOMContentLoaded', () => {
     let secondCard = chosenCardIds[1];
 
     if (chosenCards[0] == chosenCards[1]) {
-      cards[firstCard].setAttribute('src', 'img/front.jpg');
-      cards[secondCard].setAttribute('src', 'img/front.jpg');
+      cards[firstCard].setAttribute('src', 'img/blank.png');
+      cards[secondCard].setAttribute('src', 'img/blank.png');
       foundCards++;
     } else {
       cards[firstCard].setAttribute('src', 'img/placeholder.jpg');
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     foundHolder.textContent = foundCards;
 
     if (foundCards == cardsInGame) {
-      alert('Well Done Brahh!!');
+      alert('Well Done!! You won!!');
     }
   };
 
